@@ -8,7 +8,7 @@ repository = "https://github.com/flajr/zed-janet"
 
 [grammars.janet]
 repository = "https://github.com/GrayJack/tree-sitter-janet"
-commit = "main"
+commit = "1d002c23d4e952ce24a2e472d0f81ab0471ceb1b"
 
 [language_servers.janet-lsp]
 name = "janet-lsp"
