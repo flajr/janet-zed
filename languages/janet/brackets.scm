@@ -1,16 +1,15 @@
-; Basic bracket pairs
-("(" @open ")" @close)
-("[" @open "]" @close) 
-("{" @open "}" @close)
+; Parentheses in tuples
+(tuple "(" @open ")" @close)
 
-; String delimiters
-("\"" @open "\"" @close)
-("`" @open "`" @close)
+; Square brackets in arrays
+(array "[" @open "]" @close)
+(array "@[" @open "]" @close)
 
-; Long string delimiters  
-("@\"" @open "\"" @close)
-("@`" @open "`" @close)
+; Curly braces in structs
+(struct "{" @open "}" @close)
 
-; Buffer literals
-("@\"" @open "\"" @close)
-("@`" @open "`" @close)
+; Curly braces in tables
+(table "@{" @open "}" @close)
+
+; Short function delimiters
+(short_fn "|" @open "|" @close)
