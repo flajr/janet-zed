@@ -73,11 +73,11 @@ dev: clean install build
 check:
   @echo "Checking extension structure..."
   @test -f extension.toml || (echo "Missing extension.toml" && exit 1)
-  @test -f languages/janet/config.toml || (echo "Missing config.toml" && exit 1)
-  @test -f languages/janet/highlights.scm || (echo "Missing highlights.scm" && exit 1)
-  @test -f languages/janet/brackets.scm || (echo "Missing brackets.scm" && exit 1)
-  @test -f languages/janet/indents.scm || (echo "Missing indents.scm" && exit 1)
-  @test -f languages/janet/grammar.js || (echo "Missing grammar.js" && exit 1)
+  @test -f grammars/janet/config.toml || (echo "Missing config.toml" && exit 1)
+  @test -f grammars/janet/highlights.scm || (echo "Missing highlights.scm" && exit 1)
+  @test -f grammars/janet/brackets.scm || (echo "Missing brackets.scm" && exit 1)
+  @test -f grammars/janet/indents.scm || (echo "Missing indents.scm" && exit 1)
+  @test -f grammars/janet/grammar.js || (echo "Missing grammar.js" && exit 1)
   @echo "All required files present ✓"
 
 # Watch for changes during development
