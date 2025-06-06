@@ -2,7 +2,7 @@ name = "Janet"
 grammar = "janet"
 path_suffixes = ["janet", "jdn"]
 line_comments = ["# "]
-block_comment = ["#" " #"]
+block_comment = ["#", " #"]
 autoclose_before = "])}"
 brackets = [
     { start = "(", end = ")", close = true, newline = true },
