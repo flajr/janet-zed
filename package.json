@@ -1,0 +1,22 @@
+{
+  "name": "janet-zed",
+  "version": "0.1.0",
+  "description": "Janet language support for Zed",
+  "main": "extension.js",
+  "scripts": {
+    "build": "./build.sh",
+    "test": "cd languages/janet && tree-sitter test",
+    "clean": "rm -rf languages/janet/src languages/janet/*.wasm languages/janet/node_modules"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  },
+  "keywords": [
+    "zed",
+    "extension",
+    "janet",
+    "language"
+  ],
+  "author": "Marek Stefanka <marekstefanka@duck.com>",
+  "license": "MIT"
+}
