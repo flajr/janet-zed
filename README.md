@@ -53,9 +53,9 @@ The build process generates the tree-sitter WASM module from the included gramma
 
 ```
 janet-zed/
-├── extension.toml          # Extension metadata
+├── extension.toml         # Extension metadata
 ├── package.json           # Node dependencies
-├── Justfile              # Build automation
+├── Justfile               # Build automation
 └── languages/
     └── janet/
         ├── grammar.js     # Tree-sitter grammar definition

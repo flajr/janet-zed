@@ -19,6 +19,20 @@ clean:
   rm -rf languages/janet/src
   rm -f languages/janet/*.wasm
   rm -f package-lock.json
+  # Clean up non-essential files from languages/janet directory
+  rm -f languages/janet/.editorconfig
+  rm -f languages/janet/.gitattributes
+  rm -f languages/janet/.gitignore
+  rm -f languages/janet/Cargo.toml
+  rm -f languages/janet/Makefile
+  rm -f languages/janet/Package.swift
+  rm -f languages/janet/binding.gyp
+  rm -f languages/janet/go.mod
+  rm -f languages/janet/grammar.js
+  rm -f languages/janet/package.json
+  rm -f languages/janet/pyproject.toml
+  rm -f languages/janet/setup.py
+  rm -rf languages/janet/bindings
 
 # Test the grammar
 test: build
