@@ -1,125 +1,65 @@
-; Numeric literals
-(number_literal) @number
-
-; String literals with various forms
-[
-    (str_literal)
-    (long_str_literal) 
-    (buffer_literal)
-    (long_buffer_literal)
-] @string
-
-; Boolean and nil constants
-[
-    (bool_literal)
-    (nil_literal)
-] @constant.builtin
-
 ; Comments
 (line_comment) @comment
 
-; Core language keywords and special forms
-[
-    "def"
-    "var" 
-    "varglobal"
-    "fn"
-    "defn"
-    "defmacro"
-    "defglobal"
-    "do"
-    "quote"
-    "quasiquote"
-    "unquote"
-    "splice"
-    "if"
-    "if-let"
-    "when"
-    "unless"
-    "cond"
-    "case"
-    "while"
-    "for"
-    "loop"
-    "each"
-    "break"
-    "continue"
-    "return"
-    "yield"
-    "resume"
-    "set"
-    "upscope"
-    "try"
-    "catch"
-    "finally"
-    "throw"
-    "with"
-    "with-syms"
-    "gensym"
-    "import"
-    "use"
-    "require"
-    "module"
-    "fiber"
-    "thread"
-    "ev/spawn"
-    "ev/do-thread"
-] @keyword
+; Numeric literals
+(number_literal) @number
 
-; Function calls in tuple context
-(tuple
-  .
-  (symbol) @function)
+; String literals
+(str_literal) @string
+(long_str_literal) @string
+(buffer_literal) @string
+(long_buffer_literal) @string
 
-; Macro calls
-(tuple
-  .
-  (symbol) @function.macro
-  (#match? @function.macro "^[A-Z]"))
+; Boolean and nil constants
+(bool_literal) @constant.builtin
+(nil_literal) @constant.builtin
 
 ; Keywords (prefixed with colon)
-(keyword) @keyword
+(keyword) @constant
 
-; Symbols and variables
-(symbol) @variable
+; Special forms and built-in functions as symbols
+(symbol) @keyword
+(#match? @keyword "^(def|var|varglobal|fn|defn|defmacro|defglobal|do|quote|quasiquote|unquote|splice|if|if-let|when|unless|cond|case|while|for|loop|each|break|continue|return|yield|resume|set|upscope|try|catch|finally|throw|with|with-syms|gensym|import|use|require|module|fiber|thread|ev/spawn|ev/do-thread)$")
+
+; Function calls - first element in tuple
+(tuple
+  . (symbol) @function)
+
+; Macro calls - first element in tuple starting with uppercase
+(tuple
+  . (symbol) @function.macro
+  (#match? @function.macro "^[A-Z]"))
+
+; Built-in arithmetic and comparison operators
+(symbol) @function.builtin
+(#match? @function.builtin "^(\\+|\\-|\\*|\\/|%|=|<|>|<=|>=|not=|and|or|not)$")
 
 ; Built-in functions
 (symbol) @function.builtin
-(#match? @function.builtin "^(\\+|\\-|\\*|\\/|%|=|<|>|<=|>=|not=|and|or|not|length|get|put|merge|keys|values|pairs|map|filter|reduce|apply|partial|comp|juxt|thread-first|thread-last|->|->?|->>|->>?|as->|some->|some->>|cond->|cond->>|if-let|when-let|unless-let)$")
+(#match? @function.builtin "^(length|get|put|merge|keys|values|pairs|map|filter|reduce|apply|partial|comp|juxt|first|last|rest|butlast|drop|take|drop-while|take-while|reverse|sort|sort-by|group-by|frequencies|distinct|flatten|partition|partition-by|split-at|split-with|concat|mapcat|interleave|interpose|zip|unzip)$")
 
-; Special symbols
-[
-    "true"
-    "false" 
-    "nil"
-] @constant.builtin
+; Thread macros
+(symbol) @function.macro
+(#match? @function.macro "^(->|->\\?|->>|->>\\?|as->|some->|some->>|cond->|cond->>)$")
 
-; Numbers with special formatting
-(number_literal) @number
-(#match? @number "^0x[0-9a-fA-F]+$") @number.hex
-(#match? @number "^0o[0-7]+$") @number.octal  
-(#match? @number "^0b[01]+$") @number.binary
-(#match? @number "^[0-9]*\\.[0-9]+([eE][+-]?[0-9]+)?$") @number.float
+; Default symbols are variables
+(symbol) @variable
 
 ; Punctuation
 [
-    "("
-    ")"
-    "["
-    "]"
-    "{"
-    "}"
+  "("
+  ")"
+  "["
+  "]"
+  "{"
+  "}"
+  "@{"
 ] @punctuation.bracket
 
-[
-    ","
-    ";"
-] @punctuation.delimiter
-
-; Operators in infix position
-(symbol) @operator
-(#match? @operator "^[+\\-*/%=<>!&|^~]+$")
-
-; Documentation strings
-(str_literal) @comment.documentation
-(#match? @comment.documentation "^\".*\\n.*\"$")
+; Special prefixes
+"@" @punctuation.special
+"'" @punctuation.special
+"~" @punctuation.special
+"," @punctuation.special
+";~" @punctuation.special
+"~@" @punctuation.special

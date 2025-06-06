@@ -16,10 +16,10 @@ build: install
 # Clean build artifacts
 clean:
   rm -rf node_modules
+  rm -f package-lock.json
+  # Clean up languages/janet directory (keep essential config files)
   rm -rf languages/janet/src
   rm -f languages/janet/*.wasm
-  rm -f package-lock.json
-  # Clean up non-essential files from languages/janet directory
   rm -f languages/janet/.editorconfig
   rm -f languages/janet/.gitattributes
   rm -f languages/janet/.gitignore
@@ -28,11 +28,27 @@ clean:
   rm -f languages/janet/Package.swift
   rm -f languages/janet/binding.gyp
   rm -f languages/janet/go.mod
-  rm -f languages/janet/grammar.js
   rm -f languages/janet/package.json
   rm -f languages/janet/pyproject.toml
   rm -f languages/janet/setup.py
   rm -rf languages/janet/bindings
+  # Clean up grammars/janet directory (where tree-sitter builds)
+  rm -rf grammars/janet/src
+  rm -f grammars/janet/*.wasm
+  rm -f grammars/janet/.editorconfig
+  rm -f grammars/janet/.gitattributes
+  rm -f grammars/janet/.gitignore
+  rm -f grammars/janet/Cargo.toml
+  rm -f grammars/janet/Makefile
+  rm -f grammars/janet/Package.swift
+  rm -f grammars/janet/binding.gyp
+  rm -f grammars/janet/go.mod
+  rm -f grammars/janet/package.json
+  rm -f grammars/janet/pyproject.toml
+  rm -f grammars/janet/setup.py
+  rm -rf grammars/janet/bindings
+  rm -rf grammars/janet/target
+  rm -rf grammars/janet/build
 
 # Test the grammar
 test: build

@@ -6,7 +6,7 @@ set -e
 echo "Building Janet grammar..."
 
 # Change to the grammar directory
-cd languages/janet
+cd grammars/janet
 
 # Generate the parser
 echo "Generating parser..."
@@ -47,9 +47,8 @@ podman run --rm \
 if [ -f "$BUILD_DIR/janet.wasm" ]; then
   cp "$BUILD_DIR/janet.wasm" .
 
-  # Also copy to grammars directory for Zed
-  mkdir -p ../../grammars
-  cp "$BUILD_DIR/janet.wasm" ../../grammars/
+  # Also copy to parent grammars directory for Zed
+  cp "$BUILD_DIR/janet.wasm" ../
 
   echo "WASM build successful!"
 else
