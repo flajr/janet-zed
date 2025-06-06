@@ -8,7 +8,7 @@ repository = "https://github.com/flajr/janet-zed"
 
 [grammars.janet]
 repository = "https://github.com/flajr/janet-grammar.git"
-rev = "test"
+rev = "main"
 
 [language_servers.janet-lsp]
 name = "janet-lsp"
