@@ -56,9 +56,9 @@ janet-zed/
 ├── extension.toml         # Extension metadata
 ├── package.json           # Node dependencies
 ├── Justfile               # Build automation
+├── build.sh               # Build script, well, just because
 └── languages/
     └── janet/
-        ├── grammar.js     # Tree-sitter grammar definition
         ├── config.toml    # Language configuration
         ├── highlights.scm # Syntax highlighting queries
         ├── brackets.scm   # Bracket matching queries
